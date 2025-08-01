@@ -1,0 +1,5 @@
+C:\Users\Infusory\Desktop\Sachin\Projects\WPF_LIBRARY\Tutar_Nuget\tutar_glb\obj\Debug\net8.0-windows\tutar_glb.csproj.AssemblyReference.cache
+C:\Users\Infusory\Desktop\Sachin\Projects\WPF_LIBRARY\Tutar_Nuget\tutar_glb\obj\Debug\net8.0-windows\tutar_glb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Infusory\Desktop\Sachin\Projects\WPF_LIBRARY\Tutar_Nuget\tutar_glb\obj\Debug\net8.0-windows\tutar_glb.AssemblyInfoInputs.cache
+C:\Users\Infusory\Desktop\Sachin\Projects\WPF_LIBRARY\Tutar_Nuget\tutar_glb\obj\Debug\net8.0-windows\tutar_glb.AssemblyInfo.cs
+C:\Users\Infusory\Desktop\Sachin\Projects\WPF_LIBRARY\Tutar_Nuget\tutar_glb\obj\Debug\net8.0-windows\tutar_glb.csproj.CoreCompileInputs.cache

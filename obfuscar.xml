@@ -1,0 +1,11 @@
+﻿<?xml version='1.0'?>
+<Obfuscator>
+	<Var name="InPath" value="." />
+	<Var name="OutPath" value=".\Obfuscator_Output" />
+	<Var name="HidePrivateApi" value="true" />
+	<Var name="KeepPublicApi" value="true" />
+
+	<Module file="$(InPath)\tutar_glb.dll">
+		<SkipNamespace name="tutar_glb.Models" skipFields="true" skipProperties="true" />
+	</Module>
+</Obfuscator>

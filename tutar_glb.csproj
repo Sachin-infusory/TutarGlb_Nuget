@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Title>TutarGlb</Title>
+		<Description>Tutar WPF Library for glb model rendering</Description>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>1.0.3</Version>
+		<AssemblyVersion>1.0.3</AssemblyVersion>
+		<FileVersion>1.0.3</FileVersion>
+		<LangVersion>10.0</LangVersion>
+		<Authors>Sachin K</Authors>
+		<Company>Infusory</Company>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="HelixToolkit.SharpDX.Assimp" Version="2.27.0" />
+		<PackageReference Include="HelixToolkit.Wpf" Version="2.27.0" />
+		<PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.27.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="SharpZipLib" Version="1.4.2" />
+		<PackageReference Include="System.Net.Http" Version="4.3.4" />
+		<PackageReference Include="Obfuscar" Version="2.2.37">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.IO.Compression" />
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="obfuscar.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<PostBuildEvent>"$(Obfuscar)" obfuscar.xml</PostBuildEvent>
+	</PropertyGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<Exec Command=" copy /Y &quot;$(TargetDir)Obfuscator_Output\$(TargetName).dll&quot; &quot;$(TargetDir)$(TargetName).dll&quot;" />
+	</Target>
+
+
+
+</Project>
