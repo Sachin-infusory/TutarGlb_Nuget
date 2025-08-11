@@ -8,7 +8,7 @@
     <license type="expression">MIT</license>
     <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
     <description>Tutar WPF Library for glb model rendering</description>
-    <repository type="git" />
+    <repository type="git" commit="ab3d319bba0ecd704ad660763a612a5290786000" />
     <dependencies>
       <group targetFramework=".NETFramework4.7.2">
         <dependency id="HelixToolkit.SharpDX.Assimp" version="2.27.0" exclude="Build,Analyzers" />
@@ -32,6 +32,6 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="C:\Users\Infusory\Desktop\Sachin\Projects\WPF_LIBRARY\Tutar_Nuget\tutar_glb\bin\Release\net472\tutar_glb.dll" target="lib\net472\tutar_glb.dll" />
+    <file src="C:\Users\Infusory\Desktop\senses\TutarGlb_Nuget\bin\Release\net472\tutar_glb.dll" target="lib\net472\tutar_glb.dll" />
   </files>
 </package>

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Tutar WPF Library for glb model rendering")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.3")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.3+ab3d319bba0ecd704ad660763a612a5290786000")]
 [assembly: System.Reflection.AssemblyProductAttribute("tutar_glb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tutar_glb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.3")]

@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = tutar_glb
-build_property.ProjectDir = C:\Users\Infusory\Desktop\Sachin\Projects\WPF_LIBRARY\Tutar_Nuget\tutar_glb\
+build_property.ProjectDir = C:\Users\Infusory\Desktop\senses\TutarGlb_Nuget\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false

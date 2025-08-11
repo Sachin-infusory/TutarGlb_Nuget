@@ -1,4 +1,3 @@
-using HelixToolkit.Wpf.SharpDX.Utilities;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net;
@@ -6,25 +5,21 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Text;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using tutar.Utils;
 using tutar_glb.Models;
 using tutar_glb.Utils;
 using tutar_glb.View;
+using DownloadProgressEventArgs = tutar_glb.Utils.DownloadProgressEventArgs;
 
 
 
 namespace tutar_glb
 {
-    /// <summary>
-    /// Exception thrown when SDK initialization fails
-    /// </summary>
     public static class TutarGlb
     {
         #region Internal Fields
-        private static HttpClient? _client;
+        private static HttpClient _client;
         private static readonly object _lock = new object();
         internal static string s3BucketUrl = "https://tutar-assets-public.s3.ap-south-1.amazonaws.com";
         internal static string oracleUrl = "https://objectstorage.ap-mumbai-1.oraclecloud.com/n/bm3bhqklizp1/b/tutar-offline-bundles/o/production%2Foffline-bundles%2F";
@@ -89,7 +84,6 @@ namespace tutar_glb
             [JsonProperty("apiKey", Required = Required.Always)]
             public string ApiKey { get; set; }
         }
-
         #region Initialization
 
         /// <summary>
@@ -103,12 +97,8 @@ namespace tutar_glb
         /// <exception cref="TutarGlbVerificationException">Thrown when API verification fails</exception>
         public static async Task<bool> InitializeAsync(string apiKey, string deviceId)
         {
-
-
-
             if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentNullException(nameof(apiKey), "API key cannot be null or empty");
-
             if (string.IsNullOrWhiteSpace(deviceId))
                 throw new ArgumentNullException(nameof(deviceId), "Device ID cannot be null or empty");
 
@@ -117,7 +107,6 @@ namespace tutar_glb
                 client = GetHttpClient();
                 string macAddress = GetMacAddress();
 
-                // Configure HTTP client
                 client.BaseAddress = new Uri("https://api.tutarverse.com/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
@@ -126,40 +115,31 @@ namespace tutar_glb
                 client.DefaultRequestHeaders.Add("x-tutar-version", Version);
                 client.DefaultRequestHeaders.Add("x-tutar-device-id", deviceId);
 
-
                 if (!string.IsNullOrEmpty(macAddress))
                 {
                     client.DefaultRequestHeaders.Add("x-tutar-mac-address", macAddress);
                 }
 
+                var verificationTask = MakeVerificationCallAsync(apiKey, deviceId);
+                var secondApiTask = MakeSecondVerificationAsync(apiKey, deviceId); 
 
-                var testObj = new InitializationRequest
+                var results = await Task.WhenAll(verificationTask, secondApiTask);
+
+                bool verificationSuccess = results[0];
+                bool secondApiSuccess = results[1];
+
+                if (verificationSuccess && secondApiSuccess)
                 {
-                    DeviceId = deviceId,
-                    ApiKey = apiKey
-                };
-
-                string jsonBody = JsonConvert.SerializeObject(testObj);
-
-                var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await client.PostAsync("https://tsi.tutarverse.com/tsi/verify", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string responseContent = await response.Content.ReadAsStringAsync();
                     isInitialized = true;
-
                     Directory.CreateDirectory(DefaultDownloadPath);
-
                     return true;
                 }
                 else
                 {
                     isInitialized = false;
                     throw new TutarGlbVerificationException(
-                        $"API verification failed with status code: {response.StatusCode}",
-                        (int)response.StatusCode);
+                        $"Verification Failed: check if the api key is correct",
+                        400);
                 }
             }
             catch (HttpRequestException ex)
@@ -184,6 +164,46 @@ namespace tutar_glb
             }
         }
 
+        private static async Task<bool> MakeVerificationCallAsync(string apiKey, string deviceId)
+        {
+            var testObj = new InitializationRequest
+            {
+                DeviceId = deviceId,
+                ApiKey = apiKey
+            };
+
+            string jsonBody = JsonConvert.SerializeObject(testObj);
+            var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync("https://tsi.tutarverse.com/tsi/verify", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
+                return true;
+            }
+            else
+            {
+                throw new TutarGlbVerificationException(
+                    $"API verification failed with status code: {response.StatusCode}",
+                    (int)response.StatusCode);
+            }
+        }
+
+        private static async Task<bool> MakeSecondVerificationAsync(string apiKey, string deviceId)
+        {
+            try
+            {
+            HttpResponseMessage response = await client.GetAsync("https://api.tutarverse.com/offline-bundles/_/validate");
+                string responseContent = await response.Content.ReadAsStringAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new TutarGlbVerificationException(
+                       $"Verification fialed: Error making the api request",500);
+            }
+        }
 
         public static void Dispose()
         {
@@ -196,9 +216,7 @@ namespace tutar_glb
         }
 
         #endregion
-
         #region Bundle Management
-
         /// <summary>
         /// Download the complete model bundle
         /// </summary>
@@ -221,11 +239,10 @@ namespace tutar_glb
         {
             if (!isInitialized)
                 throw new InvalidOperationException("SDK must be initialized before checking for updates");
-
             return await Bundle.CheckUpdate(saveDir);
         }
 
-        public static async Task<bool> ExtractDownloadedZip(String saveDir = null, IProgress<DownloadProgressEventArgs> progress = null)
+        public static async Task<bool> ExtractDownloadedObjZip(String saveDir = null, IProgress<DownloadProgressEventArgs> progress = null)
         {
             if (!isInitialized)
                 throw new InvalidOperationException("SDK must be initialized before checking for updates");
@@ -243,6 +260,22 @@ namespace tutar_glb
             return status;
         }
 
+        public static GlbModel3DXLoader createGlb3DXLoader()
+        {
+            if (!isInitialized)
+                throw new InvalidOperationException("SDK must be initialized before checking for updates");
+
+            return new GlbModel3DXLoader();
+        }
+
+
+        public static async Task<Model3DGroup> GetModelById(string id, bool fromBundle = false)
+        {
+            if (!isInitialized)
+                throw new InvalidOperationException("SDK must be initialized to Get the model");
+
+            return fromBundle ? ObjBundle.FetchModel(id) : await Online.FetchModel(id);
+        }
 
         internal static Model3DGroup LoadModal(SingleModelResponse singleModelResponse)
         {
@@ -315,148 +348,9 @@ namespace tutar_glb
             }
             return model;
         }
-
         #endregion
     }
 
-    public class ModelContainer : UserControl
-    {
-        private TextBlock? _displayText;
-        private string? _currentModelFile;
-        private GlbModel3DXLoader? _currentViewport;
-
-        /// <summary>
-        /// Initialize the model container
-        /// </summary>
-        public ModelContainer()
-        {
-            this.Width = 400;
-            this.Height = 400;
-
-            this.Background = Brushes.Transparent;
-
-        }
-
-
-        private void Show3DMode()
-        {
-            try
-            {
-                if (_currentViewport == null)
-                {
-                    _currentViewport = new GlbModel3DXLoader();
-                }
-
-                this.Content = _currentViewport;
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Failed to create 3D viewport", ex);
-            }
-        }
-
-        /// <summary>
-        /// Load a model file and display its filename
-        /// </summary>
-        /// <param name="filename">Path to the model file</param>
-        /// <exception cref="ArgumentException">Thrown when filename is invalid</exception>
-        /// <exception cref="FileNotFoundException">Thrown when file does not exist</exception>
-        /// <exception cref="NotSupportedException">Thrown when file format is not supported</exception>
-        public void LoadModel(string filename)
-        {
-            if (string.IsNullOrWhiteSpace(filename))
-                throw new ArgumentException("Filename cannot be null or empty", nameof(filename));
-
-            try
-            {
-                _currentModelFile = filename;
-
-                if (!File.Exists(filename))
-                    throw new FileNotFoundException($"Model file not found: {filename}");
-
-                string extension = Path.GetExtension(filename).ToLower();
-                if (extension != ".glb" && extension != ".gltf" && extension != ".obj" && extension != ".fbx")
-                    throw new NotSupportedException($"Unsupported file format: {extension}. Supported formats: .glb");
-
-
-                Show3DMode();
-
-                if (_currentViewport != null)
-                {
-                    _currentViewport.LoadNewModel(filename, "bf3c199c2470cb477d907b1e0917c17b");
-                }
-                else
-                {
-                    throw new InvalidOperationException("3D viewport is not available");
-                }
-            }
-            catch (Exception ex) when (!(ex is ArgumentException || ex is FileNotFoundException || ex is NotSupportedException))
-            {
-                throw new InvalidOperationException("Failed to load model", ex);
-            }
-        }
-
-        /// <summary>
-        /// Update the container size
-        /// </summary>
-        /// <param name="width">New width</param>
-        /// <param name="height">New height</param>
-        /// <exception cref="ArgumentException">Thrown when width or height is invalid</exception>
-        public void UpdateSize(double width, double height)
-        {
-            if (_currentViewport != null)
-                if (width <= 0)
-                    throw new ArgumentException("Width must be greater than 0", nameof(width));
-
-            if (height <= 0)
-                throw new ArgumentException("Height must be greater than 0", nameof(height));
-
-            try
-            {
-                this.Width = width;
-                this.Height = height;
-                _currentViewport.updateRendererSize(width, height);
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Failed to update container size", ex);
-            }
-        }
-
-        /// <summary>
-        /// Get the currently loaded model filename
-        /// </summary>
-        /// <returns>Current model filename or null if none loaded</returns>
-        public string? GetCurrentModel()
-        {
-            return _currentModelFile;
-        }
-
-        /// <summary>
-        /// Clear the currently loaded model
-        /// </summary>
-        public void ClearModel()
-        {
-            try
-            {
-                if (_displayText != null)
-                {
-                    _displayText.Text = "No model loaded";
-                }
-                _currentModelFile = null;
-
-                if (_currentViewport != null)
-                {
-                    _currentViewport.Dispose();
-                    _currentViewport = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Failed to clear model", ex);
-            }
-        }
-    }
 }
 
 

@@ -1,48 +1,56 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\",
+  "WorkspaceRootPath": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{21F1D569-DF07-4834-A513-714135E2B6F4}|..\\TutarGlbTest\\TutarGlbTest.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutarglbtest\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\utils\\objextractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\objextractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\view\\glbviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:view\\glbviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\tutarglb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:tutarglb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\utils\\bundle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\utils\\bundle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\bundle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\utils\\crypto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\crypto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\tutarglb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:tutarglb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\utils\\streamloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\streamloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\utils\\objbundle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\objbundle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\utils\\objreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\utils\\objreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\objreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\models\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:models\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\utils\\objextractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\objextractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutar_glb\\utils\\cache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\cache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\utils\\online.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:utils\\online.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21F1D569-DF07-4834-A513-714135E2B6F4}|..\\TutarGlbTest\\TutarGlbTest.csproj|c:\\users\\infusory\\desktop\\sachin\\projects\\wpf_library\\tutar_nuget\\tutarglbtest\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\models\\tags.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:models\\tags.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\models\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:models\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\models\\allmodelsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:models\\allmodelsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8154593-54B8-4D77-80CB-73C731541E27}|..\\WpfNugetTestLatest\\WpfNugetTestLatest.csproj|c:\\users\\infusory\\desktop\\senses\\wpfnugettestlatest\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8154593-54B8-4D77-80CB-73C731541E27}|..\\WpfNugetTestLatest\\WpfNugetTestLatest.csproj|c:\\users\\infusory\\desktop\\senses\\wpfnugettestlatest\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|c:\\users\\infusory\\desktop\\senses\\tutarglb_nuget\\tutar_glb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7D752016-CA8D-45C0-9E5D-1051AC87BA18}|tutar_glb.csproj|solutionrelative:tutar_glb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\obj\\Release\\net472\\tutar_glb.GlobalUsings.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:obj\\Release\\net472\\tutar_glb.GlobalUsings.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -52,142 +60,174 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ObjExtractor.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\ObjExtractor.cs",
-              "RelativeDocumentMoniker": "Utils\\ObjExtractor.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\ObjExtractor.cs",
-              "RelativeToolTip": "Utils\\ObjExtractor.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAgwIcAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Bundle.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\Bundle.cs",
+              "RelativeDocumentMoniker": "Utils\\Bundle.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\Bundle.cs",
+              "RelativeToolTip": "Utils\\Bundle.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wAgAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T05:54:52.222Z",
+              "WhenOpened": "2025-08-11T12:11:05.7Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StreamLoader.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\StreamLoader.cs",
-              "RelativeDocumentMoniker": "Utils\\StreamLoader.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\StreamLoader.cs",
-              "RelativeToolTip": "Utils\\StreamLoader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T09:53:02.988Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ObjReader.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\ObjReader.cs",
-              "RelativeDocumentMoniker": "Utils\\ObjReader.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\ObjReader.cs",
-              "RelativeToolTip": "Utils\\ObjReader.cs",
-              "ViewState": "AgIAAHMEAAAAAAAAAAAmwI0EAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T09:11:25.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Crypto.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\Crypto.cs",
-              "RelativeDocumentMoniker": "Utils\\Crypto.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\Crypto.cs",
-              "RelativeToolTip": "Utils\\Crypto.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAYwI4AAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T06:59:14.492Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Cache.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\Cache.cs",
-              "RelativeDocumentMoniker": "Utils\\Cache.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\Cache.cs",
-              "RelativeToolTip": "Utils\\Cache.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T06:59:02.864Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TutarGlb.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\TutarGlb.cs",
-              "RelativeDocumentMoniker": "TutarGlb.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\TutarGlb.cs",
-              "RelativeToolTip": "TutarGlb.cs",
-              "ViewState": "AgIAANYAAAAAAAAAAAAqwOgAAAA/AAAAAAAAAA==",
+              "Title": "ObjReader.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\ObjReader.cs",
+              "RelativeDocumentMoniker": "Utils\\ObjReader.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\ObjReader.cs",
+              "RelativeToolTip": "Utils\\ObjReader.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T06:57:08.794Z",
+              "WhenOpened": "2025-08-11T11:57:06.75Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "GLbViewer.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\View\\GLbViewer.cs",
-              "RelativeDocumentMoniker": "View\\GLbViewer.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\View\\GLbViewer.cs",
-              "RelativeToolTip": "View\\GLbViewer.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAQwEEAAAA+AAAAAAAAAA==",
+              "Title": "ObjBundle.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\ObjBundle.cs",
+              "RelativeDocumentMoniker": "Utils\\ObjBundle.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\ObjBundle.cs",
+              "RelativeToolTip": "Utils\\ObjBundle.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA1wB4AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T06:52:16.615Z",
+              "WhenOpened": "2025-08-11T11:57:05.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ObjExtractor.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\ObjExtractor.cs",
+              "RelativeDocumentMoniker": "Utils\\ObjExtractor.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\ObjExtractor.cs",
+              "RelativeToolTip": "Utils\\ObjExtractor.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T11:46:54.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Tags.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Models\\Tags.cs",
+              "RelativeDocumentMoniker": "Models\\Tags.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Models\\Tags.cs",
+              "RelativeToolTip": "Models\\Tags.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T11:41:11.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Model.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Models\\Model.cs",
+              "RelativeDocumentMoniker": "Models\\Model.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Models\\Model.cs",
+              "RelativeToolTip": "Models\\Model.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T10:50:38.038Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Models.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Models\\Models.cs",
-              "RelativeDocumentMoniker": "Models\\Models.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Models\\Models.cs",
-              "RelativeToolTip": "Models\\Models.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAA==",
+              "Title": "AllModelsResponse.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Models\\AllModelsResponse.cs",
+              "RelativeDocumentMoniker": "Models\\AllModelsResponse.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Models\\AllModelsResponse.cs",
+              "RelativeToolTip": "Models\\AllModelsResponse.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA5wAIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T06:49:09.118Z"
+              "WhenOpened": "2025-08-11T10:50:30.692Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Bundle.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\Bundle.cs",
-              "RelativeDocumentMoniker": "Utils\\Bundle.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\Utils\\Bundle.cs",
-              "RelativeToolTip": "Utils\\Bundle.cs",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAUwDIBAAAxAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Online.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\Online.cs",
+              "RelativeDocumentMoniker": "Utils\\Online.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\Utils\\Online.cs",
+              "RelativeToolTip": "Utils\\Online.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowDAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T06:39:20.863Z",
+              "WhenOpened": "2025-08-11T10:49:25.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "tutar_glb.GlobalUsings.g.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\obj\\Release\\net472\\tutar_glb.GlobalUsings.g.cs",
+              "RelativeDocumentMoniker": "obj\\Release\\net472\\tutar_glb.GlobalUsings.g.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\obj\\Release\\net472\\tutar_glb.GlobalUsings.g.cs",
+              "RelativeToolTip": "obj\\Release\\net472\\tutar_glb.GlobalUsings.g.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T06:31:22.648Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\TutarGlbTest\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "..\\TutarGlbTest\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\TutarGlbTest\\MainWindow.xaml",
-              "RelativeToolTip": "..\\TutarGlbTest\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\WpfNugetTestLatest\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "..\\WpfNugetTestLatest\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\WpfNugetTestLatest\\MainWindow.xaml",
+              "RelativeToolTip": "..\\WpfNugetTestLatest\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-30T06:37:57.867Z"
+              "WhenOpened": "2025-08-11T06:17:37.977Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\TutarGlbTest\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "..\\TutarGlbTest\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\TutarGlbTest\\MainWindow.xaml.cs",
-              "RelativeToolTip": "..\\TutarGlbTest\\MainWindow.xaml.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwCQAAAAVAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\WpfNugetTestLatest\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "..\\WpfNugetTestLatest\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\WpfNugetTestLatest\\MainWindow.xaml.cs",
+              "RelativeToolTip": "..\\WpfNugetTestLatest\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAqwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:06:56.767Z",
+              "WhenOpened": "2025-08-11T06:17:37.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "tutar_glb",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\tutar_glb.csproj",
+              "RelativeDocumentMoniker": "tutar_glb.csproj",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\tutar_glb.csproj",
+              "RelativeToolTip": "tutar_glb.csproj",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-11T06:13:42.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TutarGlb.cs",
+              "DocumentMoniker": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\TutarGlb.cs",
+              "RelativeDocumentMoniker": "TutarGlb.cs",
+              "ToolTip": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\TutarGlb.cs",
+              "RelativeToolTip": "TutarGlb.cs",
+              "ViewState": "AgIAAA8BAAAAAAAAAAAywBcBAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T06:06:21.794Z",
               "EditorCaption": ""
             }
           ]

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 
 namespace tutar_glb.Utils
@@ -114,19 +108,17 @@ namespace tutar_glb.Utils
         /// <returns>A task representing the async operation</returns>
         public static async Task ExtractAllZipFilesToSingleFolder(string sourceFolder, IProgress<DownloadProgressEventArgs> progress = null)
         {
+
+            if (sourceFolder ==null || sourceFolder == "")
+            {
+                sourceFolder = "Models";
+            }
             if (!Directory.Exists(sourceFolder))
             {
                 throw new DirectoryNotFoundException($"Source folder not found: {sourceFolder}");
             }
 
-            string extractionFolder = Path.Combine(sourceFolder, "obj");
-            Directory.CreateDirectory(extractionFolder);
-
-            // Get all .zip files from the source folder
             List<string> zipFiles = Directory.GetFiles(sourceFolder, "*.zip", SearchOption.TopDirectoryOnly).ToList();
-
-
-            MessageBox.Show(zipFiles[0].ToString());
 
             if (zipFiles.Count == 0)
             {
@@ -143,7 +135,7 @@ namespace tutar_glb.Utils
                 try
                 {
 
-                    await Task.Run(() => ExtractZipFile(zipFilePath, extractionFolder));
+                    await Task.Run(() => ExtractZipFile(zipFilePath, sourceFolder));
                     File.Delete(zipFilePath);
                     successCount++;
                 }

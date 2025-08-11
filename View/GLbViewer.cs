@@ -5,33 +5,36 @@ using HelixToolkit.Wpf.SharpDX.Model;
 using HelixToolkit.Wpf.SharpDX.Model.Scene;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using tutar_glb.Utils;
 
 namespace tutar_glb.View
 {
-    internal class GlbModel3DXLoader : Viewport3DX, IDisposable
+    public class GlbModel3DXLoader : Viewport3DX, IDisposable
     {
         private List<IAnimationUpdater> _updaters;
         private readonly Stopwatch _stopwatch;
         private long _initTimestamp;
         private double _endTime;
         private readonly float _playbackSpeed;
-        private HelixToolkitScene _currentScene;
         private bool _disposed = false;
         private readonly List<IDisposable> _disposableResources = new List<IDisposable>();
         private readonly List<string> _tempFiles = new List<string>();
+        
 
         // Store original camera state for reset
         private Point3D _origPosition;
-        private Vector3D _origLookDirection;
-        private Vector3D _origUpDirection;
         private double _origWidth;
 
         public GlbModel3DXLoader(float playbackSpeed = 30f)
         {
+            if (!TutarGlb.IsInitialized)
+            {
+                throw new InvalidOperationException("SDK must be initialized before checking for updates");
+            }
+
             _playbackSpeed = playbackSpeed;
             _stopwatch = Stopwatch.StartNew();
             _initTimestamp = 0;
@@ -40,8 +43,6 @@ namespace tutar_glb.View
             this.Camera = new HelixToolkit.Wpf.SharpDX.OrthographicCamera
             {
                 Position = new Point3D(0, 10, 30),
-                LookDirection = new Vector3D(0, -50, -100),
-                UpDirection = new Vector3D(0, 1, 0),
                 Width = 5,
                 NearPlaneDistance = 0.1,
                 FarPlaneDistance = 5000,
@@ -58,7 +59,7 @@ namespace tutar_glb.View
             this.MinimumFieldOfView = 45;
             this.MaximumFieldOfView = 100;
             this.ShowCoordinateSystem = true;
-            this.Height = 400;
+            this.Height = 400; 
             this.Width = 400;
 
             // Transparent background
@@ -71,8 +72,6 @@ namespace tutar_glb.View
 
             // Remember original camera state
             _origPosition = this.Camera.Position;
-            _origLookDirection = this.Camera.LookDirection;
-            _origUpDirection = this.Camera.UpDirection;
             if (this.Camera is HelixToolkit.Wpf.SharpDX.OrthographicCamera oc)
             {
                 _origWidth = oc.Width;
@@ -85,209 +84,7 @@ namespace tutar_glb.View
             CompositionTarget.Rendering += OnRendering;
         }
 
-        public GlbModel3DXLoader(string encryptedFilePath, string encryptionKey, float playbackSpeed = 30f)
-        {
-            if (string.IsNullOrEmpty(encryptionKey))
-            {
-                throw new ArgumentException("Encryption key is required", nameof(encryptionKey));
-            }
 
-            LoadEncryptedGlbModel(encryptedFilePath, encryptionKey);
-            this.ZoomExtents();
-        }
-
-        internal void updateRendererSize(double width, double height)
-        {
-            this.Width = width;
-            this.Height = height;
-            this.InvalidateRender();
-        }
-
-        /// <summary>
-        /// AGGRESSIVE memory cleanup - forces everything to be released
-        /// </summary>
-        public void DisposeCurrentModel()
-        {
-            if (_disposed) return;
-
-            try
-            {
-                // 1. STOP ALL ANIMATIONS IMMEDIATELY
-                CompositionTarget.Rendering -= OnRendering;
-
-                if (_updaters != null)
-                {
-                    _updaters.Clear();
-                    _updaters = null;
-                }
-                _endTime = 0;
-                _initTimestamp = 0;
-
-                // 2. CLEAR VIEWPORT ITEMS AGGRESSIVELY
-                if (this.Items != null && this.Items.Count > 0)
-                {
-                    // Detach and dispose each item
-                    var itemsToRemove = this.Items.ToList();
-                    foreach (var item in itemsToRemove)
-                    {
-                        try
-                        {
-                            if (item is SceneNodeGroupModel3D group && group.SceneNode != null)
-                            {
-                                group.SceneNode.Detach();
-                                ClearSceneNodeAggressively(group.SceneNode);
-                            }
-
-                            if (item is IDisposable disposable)
-                            {
-                                disposable.Dispose();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                        }
-                    }
-
-                    this.Items.Clear();
-                }
-
-                if (_currentScene != null)
-                {
-                    try
-                    {
-                        if (_currentScene.Root != null)
-                        {
-                            _currentScene.Root.Detach();
-                            ClearSceneNodeAggressively(_currentScene.Root);
-                        }
-
-                        // Clear animations - just nullify, don't try to dispose
-                        _currentScene.Animations = null;
-
-                        if (_currentScene is IDisposable disposableScene)
-                        {
-                            disposableScene.Dispose();
-                        }
-
-                        _currentScene = null;
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                }
-
-                // 4. DISPOSE ALL TRACKED RESOURCES
-                foreach (var resource in _disposableResources.ToList())
-                {
-                    try
-                    {
-                        resource?.Dispose();
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                }
-                _disposableResources.Clear();
-
-                // 5. CLEAN ALL TEMP FILES
-                foreach (var tempFile in _tempFiles.ToList())
-                {
-                    CleanupTempFile(tempFile);
-                }
-                _tempFiles.Clear();
-
-                // 6. FORCE GRAPHICS MEMORY CLEANUP
-                this.InvalidateRender();
-
-                // 7. MULTIPLE AGGRESSIVE GARBAGE COLLECTIONS
-                for (int i = 0; i < 3; i++)
-                {
-                    GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, true);
-                    GC.WaitForPendingFinalizers();
-                    GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, true);
-                    Thread.Sleep(50); // Allow time for cleanup
-                }
-
-                // 8. LARGE OBJECT HEAP COMPACTION (if available)
-                try
-                {
-                    Thread.Sleep(100);
-                    GC.Collect(2, GCCollectionMode.Forced, true);
-                    GC.WaitForPendingFinalizers();
-                    GC.Collect(2, GCCollectionMode.Forced, true);
-                }
-                catch
-                {
-                    // Ignore if not available
-                }
-
-                // Re-enable rendering for next model
-                CompositionTarget.Rendering += OnRendering;
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
-        /// <summary>
-        /// Aggressively clear scene node and all its resources
-        /// </summary>
-        private void ClearSceneNodeAggressively(SceneNode node)
-        {
-            if (node == null) return;
-
-            try
-            {
-                // Process all children first
-                if (node.Items != null && node.Items.Count > 0)
-                {
-                    var children = node.Items.ToList();
-                    foreach (var child in children)
-                    {
-                        ClearSceneNodeAggressively(child);
-                    }
-                }
-
-                // Clear geometry and materials aggressively
-                if (node is GeometryNode geoNode)
-                {
-                    try
-                    {
-                        // Clear geometry
-                        if (geoNode.Geometry != null)
-                        {
-                            if (geoNode.Geometry is IDisposable disposableGeometry)
-                            {
-                                disposableGeometry.Dispose();
-                            }
-                            geoNode.Geometry = null;
-                        }
-
-                        // Clear materials
-                        if (geoNode is MaterialGeometryNode matNode && matNode.Material != null)
-                        {
-                            if (matNode.Material is IDisposable disposableMaterial)
-                            {
-                                disposableMaterial.Dispose();
-                            }
-                            matNode.Material = null;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                }
-
-                // Dispose the node itself
-                if (node is IDisposable disposableNode)
-                {
-                    disposableNode.Dispose();
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-        }
 
         /// <summary>
         /// Track disposable resources for cleanup
@@ -305,7 +102,7 @@ namespace tutar_glb.View
         /// </summary>
         private void TrackTempFile(string filePath)
         {
-            if (!string.IsNullOrEmpty(filePath) && !_tempFiles.Contains(filePath))
+            if (!string.IsNullOrEmpty(filePath) && !_tempFiles.Contains(filePath)) 
             {
                 _tempFiles.Add(filePath);
             }
@@ -314,52 +111,64 @@ namespace tutar_glb.View
         /// <summary>
         /// Loads the encrypted GLB model directly from memory stream
         /// </summary>
-        private void LoadEncryptedGlbModel(string encryptedFilePath, string encryptionKey)
+        private void LoadEncryptedGlbModel(string encryptedFilePath)
         {
-            DisposeCurrentModel();
-
             try
             {
-                byte[] decryptedData = GlbDecryptor.DecryptGlbFile(encryptedFilePath, encryptionKey);
+                byte[] decryptedData = GlbDecryptor.DecryptGlbFile(encryptedFilePath);
 
                 if (decryptedData != null)
                 {
-                    // Validate GLB header
-                    if (decryptedData.Length >= 4)
-                    {
-                        string header = Encoding.ASCII.GetString(decryptedData, 0, 4);
-                    }
+                    var scene = LoadFromMemoryStream(decryptedData) ?? LoadFromTempFile(decryptedData);
 
-                    // Try memory stream first, then temp file
-                    var importedScene = LoadFromMemoryStream(decryptedData) ?? LoadFromTempFile(decryptedData);
-
-                    if (importedScene?.Root != null)
+                    if (scene != null)
                     {
-                        _currentScene = importedScene;
-                        ProcessSuccessfulLoad(importedScene);
+                        scene.Root.Attach(this.EffectsManager);
+                        scene.Root.UpdateAllTransformMatrix();
+
+                        foreach (var node in scene.Root.Traverse().OfType<MaterialGeometryNode>())
+                            if (node.Material is PBRMaterialCore pbr)
+                                pbr.RenderEnvironmentMap = true;
+
+                        var group = new SceneNodeGroupModel3D();
+                        group.AddNode(scene.Root);
+                        this.Items.Add(group);
+
+                        // FIX: Properly set up animations
+                        if (scene.Animations != null && scene.Animations.Any())
+                        {
+                            var dict = scene.Animations.CreateAnimationUpdaters();
+                            _updaters = dict.Values.ToList(); 
+
+                            foreach (var u in _updaters)
+                                u.Reset();
+
+                            _endTime = scene.Animations.Max(a => a.EndTime);
+                            _initTimestamp = 0;
+                        }
+                        else
+                        {
+                            _updaters = new List<IAnimationUpdater>();
+                            _endTime = 0;
+                        }
                     }
                     else
                     {
                         _updaters = new List<IAnimationUpdater>();
+                        _endTime = 0;
                     }
                 }
-                else
-                {
-                    _updaters = new List<IAnimationUpdater>();
-                }
-
-                // Clear the decrypted data from memory immediately
-                decryptedData = null;
-                GC.Collect();
             }
             catch (Exception ex)
             {
                 _updaters = new List<IAnimationUpdater>();
+                _endTime = 0;
             }
         }
 
         private HelixToolkitScene LoadFromMemoryStream(byte[] glbData)
         {
+
             MemoryStream memoryStream = null;
             try
             {
@@ -383,17 +192,17 @@ namespace tutar_glb.View
 
                 if (scene != null)
                 {
-                }
 
+                }
                 return scene;
             }
             catch (Exception ex)
             {
+                
                 return null;
             }
             finally
             {
-                // Dispose immediately after use
                 if (memoryStream != null)
                 {
                     try
@@ -451,7 +260,6 @@ namespace tutar_glb.View
         {
             string tempFilePath = null;
             FileStream fileStream = null;
-
             try
             {
                 // Create unique temp file
@@ -503,11 +311,12 @@ namespace tutar_glb.View
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.InnerException.Message);
                 return null;
             }
             finally
             {
-                // Cleanup file stream
+                //Cleanup file stream
                 if (fileStream != null)
                 {
                     try
@@ -529,41 +338,6 @@ namespace tutar_glb.View
             }
         }
 
-        private void ProcessSuccessfulLoad(HelixToolkitScene importedScene)
-        {
-            // Attach to effects manager
-            importedScene.Root.Attach(this.EffectsManager);
-            importedScene.Root.UpdateAllTransformMatrix();
-
-            // Configure materials
-            var materialNodes = importedScene.Root.Traverse().OfType<MaterialGeometryNode>().ToList();
-            foreach (var node in materialNodes)
-            {
-                if (node.Material is PBRMaterialCore pbr)
-                {
-                    pbr.RenderEnvironmentMap = true;
-                }
-            }
-
-            // Add to viewport
-            var currentGroup = new SceneNodeGroupModel3D();
-            currentGroup.AddNode(importedScene.Root);
-            this.Items.Add(currentGroup);
-
-            // Setup animations
-            if (importedScene.Animations != null && importedScene.Animations.Any())
-            {
-                var dict = importedScene.Animations.CreateAnimationUpdaters();
-                _updaters = dict.Values.ToList();
-                foreach (var u in _updaters)
-                    u.Reset();
-                _endTime = importedScene.Animations.Max(a => a.EndTime);
-            }
-            else
-            {
-                _updaters = new List<IAnimationUpdater>();
-            }
-        }
 
         private void CleanupTempFile(string tempFilePath)
         {
@@ -620,53 +394,32 @@ namespace tutar_glb.View
             this.InvalidateRender();
         }
 
-        public void ResetToOriginalView()
+        public void ResetToOriginalView(double animationTime = 0)
         {
             if (this.Camera is HelixToolkit.Wpf.SharpDX.PerspectiveCamera pc)
             {
                 pc.Position = _origPosition;
-                pc.LookDirection = _origLookDirection;
-                pc.UpDirection = _origUpDirection;
             }
             else if (this.Camera is HelixToolkit.Wpf.SharpDX.OrthographicCamera oc)
             {
                 oc.Position = _origPosition;
-                oc.LookDirection = _origLookDirection;
-                oc.UpDirection = _origUpDirection;
                 oc.Width = _origWidth;
             }
+            // Re-frame everything
             this.ZoomExtents();
         }
 
-        public new void Dispose()
+        public void Dispose()
         {
-            if (_disposed) return;
-            _disposed = true;
-
-            try
-            {
-                CompositionTarget.Rendering -= OnRendering;
-                DisposeCurrentModel();
-                _stopwatch?.Stop();
-
-                if (this.EffectsManager is IDisposable disposableEffects)
-                {
-                    disposableEffects.Dispose();
-                }
-
-                base.Dispose();
-            }
-            catch (Exception ex)
-            {
-            }
+            CompositionTarget.Rendering -= OnRendering;
         }
 
 
-        public void LoadNewModel(string encryptedFilePath, string encryptionKey)
+        public void LoadNewModel(string encryptedFilePath)
         {
             try
             {
-                LoadEncryptedGlbModel(encryptedFilePath, encryptionKey);
+                LoadEncryptedGlbModel(encryptedFilePath);
                 ResetToOriginalView();
             }
             catch (Exception ex)

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows;
 
 namespace tutar_glb.Utils
 {
@@ -16,13 +17,16 @@ namespace tutar_glb.Utils
         /// <param name="encryptedFilePath">Path to the encrypted file</param>
         /// <param name="encryptionKey">Decryption key</param>
         /// <returns>Decrypted GLB data as byte array, or null if decryption fails</returns>
-        public static byte[] DecryptGlbFile(string encryptedFilePath, string encryptionKey)
+        private static readonly LogProvider _log = new GlbLogProvider();
+        public static byte[] DecryptGlbFile(string encryptedFilePath)
         {
             try
             {
-                string encryptedContent = File.ReadAllText(encryptedFilePath, Encoding.UTF8).Trim();
 
-                byte[] decryptedData = DecryptAESToBytes(encryptedContent, encryptionKey);
+                string encryptedContent = File.ReadAllText(encryptedFilePath, Encoding.UTF8).Trim();
+                string log= _log.GetLog();
+                byte[] decryptedData = DecryptAESToBytes(encryptedContent, log);
+
 
                 if (decryptedData != null && decryptedData.Length > 0)
                 {
@@ -76,7 +80,7 @@ namespace tutar_glb.Utils
         /// <param name="cipherText">Base64 encrypted text</param>
         /// <param name="key">Decryption key</param>
         /// <returns>Decrypted data as byte array</returns>
-        private static byte[] DecryptAESToBytes(string cipherText, string key)
+        private static byte[] DecryptAESToBytes(string cipherText, string log)
         {
             try
             {
@@ -99,7 +103,7 @@ namespace tutar_glb.Utils
                 byte[] encrypted = new byte[cipherBytes.Length - 16];
                 Array.Copy(cipherBytes, 16, encrypted, 0, encrypted.Length);
 
-                var keyIv = DeriveKeyAndIV(key, salt, 32, 16);
+                var keyIv = DeriveKeyAndIV(log, salt, 32, 16);
 
                 using (var aes = Aes.Create())
                 {

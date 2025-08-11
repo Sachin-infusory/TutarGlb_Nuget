@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HAq7d5lvoOQ=",
+  "dgSpecHash": "zaioI9vzdzA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Infusory\\Desktop\\Sachin\\Projects\\WPF_LIBRARY\\Tutar_Nuget\\tutar_glb\\tutar_glb.csproj",
+  "projectFilePath": "C:\\Users\\Infusory\\Desktop\\senses\\TutarGlb_Nuget\\tutar_glb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Infusory\\.nuget\\packages\\assimpnet\\5.0.0-beta1\\assimpnet.5.0.0-beta1.nupkg.sha512",
     "C:\\Users\\Infusory\\.nuget\\packages\\cyotek.drawing.bitmapfont\\2.0.0\\cyotek.drawing.bitmapfont.2.0.0.nupkg.sha512",

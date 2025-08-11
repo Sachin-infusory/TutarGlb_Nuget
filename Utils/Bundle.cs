@@ -1,14 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Windows;
-using System.Windows.Media.Media3D;
-using tutar_glb.Models;
-
 namespace tutar_glb.Utils
 {
     // Progress event args for reporting download progress
@@ -342,7 +336,6 @@ namespace tutar_glb.Utils
         {
             try
             {
-                // Extract all filenames from the JSON using the correct method
                 var extractionResult = ExtractFilenames(jsonContent);
                 List<string> requiredFiles = extractionResult.AllFilenames;
 
@@ -359,16 +352,18 @@ namespace tutar_glb.Utils
                     return false;
                 }
 
-                // Get list of existing files in Models folder
-                var existingFiles = Directory.GetFiles(modelsFolder)
-                    .Select(Path.GetFileName)
-                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                var existingFiles = Directory.GetFileSystemEntries(modelsFolder).Select(Path.GetFileName).ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-                // Check if each required file exists
+
                 var missingFiles = new List<string>();
                 foreach (string filename in requiredFiles)
                 {
                     string fileName = Path.GetFileName(filename);
+                    string ext=Path.GetExtension(filename);
+                    if (ext ==".zip")
+                    {
+                        fileName = Path.GetFileNameWithoutExtension(filename);
+                    }
                     if (!existingFiles.Contains(fileName))
                     {
                         missingFiles.Add(fileName);
@@ -380,11 +375,11 @@ namespace tutar_glb.Utils
                     return false;
                 }
 
+
                 return true;
             }
             catch (Exception ex)
             {
-                // If we can't check properly, assume we need to download
                 return false;
             }
         }
@@ -400,7 +395,6 @@ namespace tutar_glb.Utils
 
             try
             {
-                // Read local syllabus file
                 string localData = await Task.Run(() => File.ReadAllText(jsonFileName));
                 var localJsonContent = JsonConvert.DeserializeObject<JArray>(localData);
 
@@ -411,7 +405,6 @@ namespace tutar_glb.Utils
 
                 int prevVersion = localJsonContent[0]["version"].Value<int>();
 
-                // Download the latest syllabus file to compare
                 string downloadUrl = $"{TutarGlb.s3BucketUrl}/production/{jsonFileName}";
                 HttpResponseMessage response = await TutarGlb.client.GetAsync(downloadUrl);
 
@@ -432,6 +425,7 @@ namespace tutar_glb.Utils
                     // Check version comparison first
                     if (newVersion > prevVersion)
                     {
+
                         // Update the local syllabus file with the new version
                         string backupFileName = $"{jsonFileName}.backup";
                         if (File.Exists(backupFileName))
@@ -445,9 +439,15 @@ namespace tutar_glb.Utils
                     }
                     else if (newVersion == prevVersion)
                     {
-                        // Same version, but check if all files from the JSON exist locally
+                   
                         bool allFilesExist = AreAllFilesDownloaded(localData, saveDir);
-
+                        var extractionResult=ExtractFilenames(localData);
+                        var updateRequired = extractionResult.UpdateFilenames;
+                        if (updateRequired.Count > 0)
+                        {
+                            return true;
+                        }
+                        
                         if (!allFilesExist)
                         {
                             return true;
@@ -459,7 +459,6 @@ namespace tutar_glb.Utils
                     }
                     else
                     {
-                        // Local version is newer, but still check if all files exist
                         bool allFilesExist = AreAllFilesDownloaded(localData);
 
                         if (!allFilesExist)
@@ -513,9 +512,6 @@ namespace tutar_glb.Utils
             }
         }
 
-
-
-
         internal static async Task<bool> checkExtractionStatus(string sourceFolder = null)
         {
             try
@@ -531,7 +527,6 @@ namespace tutar_glb.Utils
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error downloading bundle: {ex.Message}", "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }

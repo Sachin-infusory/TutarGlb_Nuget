@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<UseWPF>true</UseWPF>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 		<Title>TutarGlb</Title>
 		<Description>Tutar WPF Library for glb model rendering</Description>
 		<ImplicitUsings>enable</ImplicitUsings>
